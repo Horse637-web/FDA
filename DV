@@ -1,1 +1,1198 @@
+Practical No: 01
+Aim-  To explore the Power BI Desktop interface and import data from Excel and CSV files 
+for analysis and visualization.
 
+Part A: Explore the Power BI Interface  
+Step 1: Open Power BI Desktop 
+ 1. Start Power BI Desktop. 
+ 2. The main interface contains the following important areas: 
+Interface Component Purpose 
+Home- Import data, transform data, create visuals and publish reports 
+Report view- Create charts, tables, cards and other visualizations 
+Data view- View and inspect imported data 
+Model view- Create and manage relationships between tables 
+Visualization pane- Select and format charts and other visuals 
+Data/Fields pane- View tables and fields/columns 
+Filter pane- Apply visual, page and report-level filters 
+Formula Bar- Create and edit DAX formulas 
+Canvas- Area where report visuals are placed 
+
+          
+Part B: Import Data from an Excel File Step  
+1: Prepare Excel Data  
+Create an Excel file such as Student_Data.xlsx. 
+Student_id   Name    Course  Marks 
+101          Amit    BSc.IT  78 
+102          Neha    BSc.IT  85 
+103          Rahul   BSc.CS  72 
+104          Priya   BSc.CS  91 
+ 
+Step 2: Import Excel Data 
+1. Open Power BI Desktop. 
+2. Select Home → Get Data → Excel Workbook. 
+3. Browse to Student_Data.xlsx. 
+4. Select the file. 
+5. The Navigator window appears. 
+6. Select the required worksheet/table. 
+7. Click Load. 
+
+Step 3: Check the Imported Data 
+1. Select Data View. 
+2. Select the Student_Data table. 
+3. Verify that Student ID, Name, Course and Marks are correctly imported.
+
+Part C: Import Data from a CSV File 
+Step 1: Prepare CSV Data Create a file named Sales_Data.csv. 
+Step 2: Import CSV Data 
+1. In Power BI Desktop, select Home → Get Data → Text/CSV. 
+2. Browse to Sales_Data.csv. 
+3. Select the file. 
+4. Power BI displays a preview of the data. 
+5. Click Load. 
+
+Step 3: Verify the Data 
+1. Go to Data View. 
+2. Select Sales_Data. 
+3. Check the columns: 
+  ○ Product 
+  ○ Category 
+  ○ Quantity 
+  ○ Sales
+----------------------------------------------------------------------------
+Practical No: 02
+Aim-  To clean and transform raw data using Power Query Editor in Power BI. Use an Excel/CSV 
+
+file named Student_Data.xlsx:  
+Step-by-Step Procedure  
+Step 1: Import the Data  
+Student_ID   Student_Name   Course   Marks   City 
+101          Amit           BSc IT   78      Mumbai 
+102          Neha           BSc CS   85      Pune 
+103          Rahul          BSc IT           Mumbai 
+104          Priya          BSc CS   91      Pune 
+105          Amit           BSc IT   78      Mumbai 
+ 
+ 
+1. Open Power BI Desktop.  
+2. Select Home → Get Data → Excel.  
+3. Select Student_Data.xlsx.  
+4. Select the required worksheet.  
+5. Click Transform Data.  
+The Power Query Editor will open.
+
+Step 2: Remove Unnecessary Columns  
+1. Select the column that is not required.  
+2. Right-click the column.  
+3. Select Remove.  
+This helps keep only the useful information.
+
+Step 3: Remove Duplicate Records  
+1. Select the relevant columns or the entire table.  
+2. Go to Home → Remove Rows → Remove Duplicates.  
+3. Power Query removes duplicate records.  
+In the example, the duplicate Amit record will be removed.
+
+Step 4: Remove Extra Spaces  
+To clean names:  
+1. Select the Student_Name column.  
+2. Go to Transform → Format → Trim.  
+3. Extra spaces before or after names are removed.  
+For example:  
+“Neha” -> “Neha” 
+
+Step 5: Standardize Text  
+To make city names consistent:  
+1. Select the City column.  
+2. Select Transform → Format → Capitalize Each Word.  
+For example: 
+pune → Pune  
+This makes values consistent. 
+
+Step 6: Handle Missing Values  
+The Marks column contains a blank value.  
+You can:  
+Option 1 – Replace with a value  
+1. Select Marks.  
+2. Choose Transform → Replace Values.  
+3. Replace blank/null values with an appropriate value.  
+Option 2 – Remove the record  
+1. Select Marks.  
+2. Choose Home → Remove Rows → Remove Blank Rows if the entire row is unsuitable.  
+For student marks, it is generally better to investigate missing marks rather than  automatically  
+assuming a score.
+
+Step 7: Change Data Types  
+1. Select Student_ID.  
+2. Set its data type to Whole Number.  
+3. Select Marks.  
+4. Set its data type to Whole Number.  
+5. Select text columns such as Student_Name, Course, and City. 6. Set them to Text.  
+Correct data types are important for calculations and visualizations.
+
+Step 8: Rename Columns  
+1. Right-click a column name.  
+2. Select Rename.  
+3. Give meaningful names. 
+Example:  
+Student_ID → Student ID  
+Student_Name → Student Name
+----------------------------------------------------------------------------
+Practical No: 03
+Aim- To create relationships between multiple tables and 
+build a data model in Power BI. 
+ 
+Sample Dataset 
+Use three tables: 
+
+1.Student Table 
+StudentID   StudentName   CourseID 
+101         Amit          C01 
+102         Neha          C02 
+103         Rahul         C01 
+104         Priya         C02 
+ 
+2. Course Table 
+CourseID   CourseName   Department 
+C01        Bsc.IT       IT 
+C02        Bsc.CS       CS 
+ 
+3.Marks Table 
+StudentID   Subject   Marks 
+101         DBMS      78 
+101         Python    85 
+102         DBMS      82 
+103         Python    75 
+104         DBMS      91 
+ 
+Step-by-Step Procedure
+Step 1: Import Multiple Tables 
+1. Open Power BI Desktop. 
+2. Select Home → Get Data → Excel. 
+3. Select the Excel file. 
+4. In the Navigator, select: 
+○ Student 
+○ Course 
+○ Marks 
+5. Click Load.
+
+Step 2: Open Model View 
+1. Look at the left navigation pane. 
+2. Select Model view. 
+3. All imported tables will be displayed.
+
+Step 3: Create Student–Course Relationship 
+The CourseID field is common between the Student and Course tables. 
+1. Drag CourseID from the Course table. 
+2. Drop it on CourseID in the Student table. 
+3. The Create relationship window appears. 
+4. Set: 
+● Cardinality: One-to-many (1:*) 
+● Cross-filter direction: Single 
+● Make this relationship active: ✓ 
+5. Click OK. 
+
+ 
+Step 4: Create Student–Marks Relationship 
+The StudentID  field is common between the Student and Marks tables. 
+1. Drag StudentID from the Student table. 
+2. Drop it on StudentID in the Marks table. 
+3. In the relationship window, select: 
+Cardinality: One-to-many (1:*) 
+4. Select Single cross-filter direction. 
+5. Click OK. 
+
+Step 5: Examine the Data Model
+----------------------------------------------------------------------------
+Practical No: 04
+Aim-  To create calculated columns and measures using Data Analysis Expressions 
+(DAX) in Power BI for performing data analysis. 
+ 
+Step 1: Open Power BI Desktop 
+Open Power BI Desktop. 
+ 
+Step 2: Import the Dataset 
+1. Click Home → Get Data → Excel. 
+2. Select the Excel file. 
+3. Choose the Sales table. 
+4. Click Load.
+
+Step 3: Open Data View 
+Click the Data View icon from the left pane. 
+Select the Sales table. 
+ 
+Part A – Create a Calculated Column 
+
+Step 4: Create Total Amount Column 
+1. Select the Sales table. 
+2. Click Table Tools → New Column. 
+3. Enter the following DAX formula: 
+Total Amount = Sales[Quantity] * Sales[Price] 
+4. Press Enter. 
+A new column named Total Amount is created.
+
+Step 5: Create Discount Column 
+Click New Column again. 
+Type: 
+Discount = Sales[Total Amount] * 0.10 
+Press Enter.
+
+Step 6: Create Net Amount Column 
+Click New Column. 
+Type: 
+Net Amount = Sales[Total Amount] - Sales[Discount] 
+Press Enter.
+
+Part B – Create Measures
+
+Step 7: Create Total Sales Measure 
+Click Table Tools → New Measure. 
+Enter: 
+Total Sales = SUM(Sales[Total Amount]) 
+Press Enter. 
+ 
+Step 8: Create Total Quantity Measure 
+Click New Measure. 
+Type: 
+Total Quantity = SUM(Sales[Quantity]) 
+Press Enter. 
+ 
+Step 9: Create Average Sales Measure 
+Click New Measure. 
+Type: 
+Average Sales = AVERAGE(Sales[Total Amount])   Press Enter. 
+
+Step 10: Create Maximum Sales Measure 
+Click New Measure. 
+Type: 
+Maximum Sales = MAX(Sales[Total Amount]) 
+Press Enter. 
+ 
+Step 11: Create Minimum Sales Measure 
+Click New Measure. 
+Type: 
+Minimum Sales = MIN(Sales[Total Amount]) 
+Press Enter. 
+ 
+Part C – Display Measures in Report 
+
+Step 12: Open Report View 
+Click the Report View icon. 
+ 
+Step 13: Create a Card Visual 
+1. Click Card from the Visualizations pane. 
+2. Drag the Total Sales measure to the card. 
+The card displays the total sales value.
+
+Step 14: Create a Table Visual 
+1. Select the Table visual. 
+2. Add the following fields: 
+   o CustomerID 
+   o Quantity 
+   o Price 
+   o Total Amount 
+   o Discount 
+   o Net Amount 
+The table will display all calculated values.
+
+Step 15: Save the Report 
+Click File → Save As. 
+Save the report as: 
+DAX_Practical.pbix 
+----------------------------------------------------------------------------
+Practical No: 05
+Aim-  To create and format bar, line, and pie charts in Power BI for effective data visualization. 
+
+Dataset: 
+Product    Category     Month     Sales Amount 
+Laptop     Electronics  January   120000 
+Mobile     Electronics  January   90000 
+Printer    Electronics  February  30000 
+Keyboard   Accessories  February  5000 
+Mouse      Accessories  March     5000 
+Mobile     Electronics  March     60000 
+Laptop     Electronics  April     60000 
+Keyboard   Accessories  April     8000 
+Printer    Electronics  May       45000 
+Mobile     Electronics  May       120000 
+ 
+Part A: Create a Bar Chart 
+
+Step 1: Open Power BI 
+Open your Power BI Desktop file. 
+Go to Report View. 
+
+Step 2: Select Bar Chart 
+From the Visualizations pane, select: 
+Clustered bar chart 
+
+Step 3: Add Product 
+From the Data pane, drag: 
+Product → ProductName 
+to the Y-axis. 
+
+Step 4: Add Sales 
+Drag: 
+Total Sales 
+to the X-axis / Values. 
+Your chart will show the total sales for each product. 
+Sales by Product 
+Comparison of total sales across products. 
+₹0 ₹75K ₹150K ₹225K ₹300K Laptop Mobile Printer Keyboard Mouse 
+
+Step 5: Format the Chart 
+Select the Format pane and change: 
+   Title → Sales by Product 
+   Data labels → On 
+   X-axis title → Total Sales 
+   Legend → Off 
+ 
+Part B: Create a Line Chart 
+
+A line chart is useful for showing changes or trends over time. 
+
+Step 1: Select Line Chart 
+Click: 
+Line chart 
+from the Visualizations pane. 
+
+Step 2: Add Month 
+Drag: 
+DateTable → Year Month 
+to the X-axis. 
+
+Step 3: Add Total Sales 
+Drag: 
+Total Sales 
+to the Y-axis. 
+
+Step 4: Sort the Months 
+Make sure the months appear in chronological order. 
+If required: 
+Month → Sort by Column → Month Number
+
+Part C: Create a Pie Chart 
+
+A pie chart is useful for showing the percentage contribution of different categories. 
+
+Step 1: Select Pie Chart 
+Click: 
+Pie chart 
+from the Visualizations pane. 
+
+Step 2: Add Category 
+Drag: 
+Product → Category 
+to Legend. 
+
+Step 3: Add Sales 
+Drag: 
+Total Sales 
+to Values. 
+
+Step 4: Format the Pie Chart 
+Turn on: 
+  Data labels 
+  Percentage of total 
+  Category names 
+Set title: 
+Sales Contribution by Category
+
+Part D: Create a Combined Report 
+Now place all three visualizations on the same report page. 
+Suggested arrangement:
+----------------------------------------
+│         SALES PERFORMANCE REPORT     │
+----------------------------------------
+│ BAR CHART        │   PIE CHART       │
+│ Sales by Product │    Sales by       │
+│ Category         │                   │
+---------------------------------------- 
+│ LINE CHART                           │
+│ Monthly Sales Trend                  │ 
+----------------------------------------
+
+Part E: Add a Slicer
+
+To make the report interactive: 
+
+Step 1 
+Select Slicer. 
+
+Step 2 
+Drag: 
+Customer → City 
+into the slicer. 
+
+Step 3 
+Select Pune.
+----------------------------------------------------------------------------
+Practical No: 06
+Aim- To create an interactive Power BI dashboard using Slicers, Filters, 
+and Hierarchies so that users can dynamically analyze the data. 
+
+Dataset used 
+Date       Region     State         Category       Product     Sales       Quantity 
+1-jan-26   West       Maharashtra   Electronics    Laptop      60000       2 
+5-jan-26   West       Maharashtra   Furniture      Chair       12000       4 
+15-jan-26  South      karnataka     Electronics    Mobile      45000       3  
+15-feb-26  North      Delhi         Furniture      Table       20000       2 
+20-feb-26  West       Gujarat       Electronics    Laptop      55000       2 
+10-mar-26  North      Tamil Nadu    Furniture      Chair       15000       5 
+15-mar-26  South      Delhi         Electronics    Mobile      30000       2 
+20-apr-26  West       Maharashtra   Electronics    Mobile      25000       2 
+ 
+Step 1: Open Power BI Desktop 
+1. Open Power BI Desktop. 
+2. Click Home → Enter data. 
+3. Enter the above data. 
+4. Give the table the name Sales. 
+5. Click Load. 
+You should now see the Sales table in the Fields/Data pane. 
+ 
+Part A — Create the Basic Dashboard 
+
+Step 2: Create a Card for Total Sales 
+1. Go to Report View. 
+2. Select the Card visual. 
+3. Drag Sales into the Card. 
+4. Power BI automatically calculates the total. 
+The card should display: 
+Total Sales = ₹262,000
+
+Step 3: Create a Sales by Region Chart 
+1. Select Clustered column chart. 
+2. Drag: 
+   ○ Region → X-axis 
+   ○ Sales → Y-axis 
+The chart will show sales for: 
+  ● West 
+  ● South 
+  ● North
+
+Step 4: Create a Category Chart 
+1. Select a Donut chart. 
+2. Drag Category into Legend. 
+3. Drag Sales into Values. 
+This allows us to compare: 
+Electronics vs Furniture
+ 
+Part B — Add a Slicer 
+
+A Slicer is an interactive visual that allows the user to select values and filter the dashboard. 
+
+Step 5: Add Region Slicer 
+1. Click a blank area of the report. 
+2. Select the Slicer visual. 
+3. Drag Region into the slicer&#39;s Field. 
+The slicer will show: 
+    Region 
+     ☐ North 
+     ☐ South 
+     ☐ West 
+ 
+Step 6: Test the Region Slicer 
+Click: 
+West 
+Power BI automatically filters the other visuals. 
+For example, the dashboard will now display only West region sales. 
+Click Ctrl + Click if you want to select multiple values, depending on the slicer’s selection 
+settings.
+ 
+Part C — Create a Category Slicer 
+
+Step 7: Add Category Slicer 
+1. Select another Slicer. 
+2. Drag Category into the slicer. 
+3. You will see: 
+   Category 
+    ☐ Electronics 
+    ☐ Furniture 
+Select Electronics. 
+All connected visuals will now show only Electronics sales.
+
+Part D — Create a Date Slicer 
+
+Step 8: Add Date Slicer 
+1. Select Slicer. 
+2. Drag Date into the slicer. 
+3. Power BI may automatically create a date hierarchy. 
+You can select the slicer’s type from the dropdown. 
+For example: 
+Between 
+01-Jan-2026 ───────── 30-Apr-2026 
+Now drag the two handles to select a particular date range.
+ 
+Part E — Add Filters 
+Power BI provides different types of filters. 
+Three important filter levels 
+Filter Applies to 
+Visual-level filter One visual 
+Page-level filter Entire report page    
+ Report-level filter Entire report 
+ 
+Step 9: Visual-Level Filter 
+Suppose we want to display only Electronics in the Region chart. 
+1. Select the Sales by Region chart. 
+2. Open the Filters pane. 
+3. Locate Category. 
+4. Select Electronics. 
+Only that particular chart will be filtered. 
+Other visuals remain unaffected unless the filter interaction affects them.
+
+Step 10: Page-Level Filter 
+Suppose the entire dashboard should show only West region data. 
+1. Open the Filters pane. 
+2. Find Filters on this page. 
+3. Drag Region into it. 
+4. Select West. 
+Now all visuals on the current report page are filtered to West. 
+
+Step 11: Report-Level Filter 
+A report-level filter affects all pages of the Power BI report. 
+1. Open the Filters pane. 
+2. Find Filters on all pages. 
+3. Drag Category into this area. 
+4. Select Electronics. 
+Now all report pages will show Electronics data.
+ 
+Part F — Create a Hierarchy 
+A hierarchy allows users to drill down from a higher-level category to a lower-level 
+category. 
+For example: 
+Region → State → City or  Year → Quarter → Month → Day 
+ 
+Step 12: Create Region Hierarchy 
+Our data contains: 
+Region 
+↓ 
+State 
+↓ 
+Product 
+To create the hierarchy: 
+1. Go to the Data/Fields pane. 
+2. Right-click Region. 
+3. Select New hierarchy. 
+Power BI creates: 
+Region Hierarchy
+
+Step 13: Add State to the Hierarchy 
+Drag: State 
+onto: 
+Region Hierarchy 
+The hierarchy becomes: 
+Region Hierarchy 
+├── Region 
+└── State 
+
+Step 14: Add Product to the Hierarchy 
+Drag: Product 
+into the same hierarchy. 
+Now: 
+Region Hierarchy 
+↓ 
+Region 
+↓ 
+State 
+↓ 
+Product 
+
+Part G — Use Hierarchy in a Chart 
+
+Step 15: Create Hierarchical Chart 
+1. Select Clustered column chart. 
+2. Drag Region Hierarchy to the X-axis. 
+3. Drag Sales to the Y-axis. 
+You will see the Region level first. 
+Example: 
+West 
+South 
+North 
+
+Step 16: Enable Drill Down 
+Look at the upper-left corner of the chart. 
+You will see drill controls. 
+Click the Drill Down button. 
+Now Power BI moves from: 
+Region 
+to: 
+State 
+For example: 
+Maharashtra 
+Gujarat 
+Karnataka 
+Tamil Nadu 
+Delhi 
+Click again to drill further into: 
+
+Part H — Create Date Hierarchy 
+Date hierarchy is particularly useful for time-series analysis.  
+ 
+Step 17: Create Date Hierarchy 
+Use the existing Date field. 
+Power BI normally provides: 
+Date Hierarchy 
+↓ 
+Year 
+↓ 
+Quarter 
+↓ 
+Month 
+↓ 
+Day 
+Drag Date Hierarchy into a column chart. 
+Drag: 
+Sales → Y-axis 
+You can now drill down through: 
+Year → Quarter → Month → Day 
+Product 
+Example: 
+Maharashtra 
+↓ 
+Laptop 
+Mobile 
+Chair 
+
+Part I — Add a Hierarchy Slicer 
+Step 18: Add Date Hierarchy to Slicer 
+1. Select Slicer. 
+2. Drag Date Hierarchy into the slicer. 
+3. The hierarchy allows users to select different date levels. 
+For example: 
+2026 
+├── Q1 
+│ ├── January 
+│ ├── February 
+│ └── March 
+└── Q2 
+└── April 
+This makes the dashboard more interactive.
+ 
+Part J — Control Interaction Between Visuals 
+Step 19: Use Edit Interactions 
+Suppose you click West in the Region chart. 
+You can decide which other visuals should respond. 
+1. Select the Region chart. 
+2. Go to Format → Edit interactions. 
+3. Small interaction icons appear on other visuals. 
+4. Choose: 
+Filter → visual gets filtered. 
+Highlight → selected portion is highlighted. 
+None → visual does not respond. 
+This is very useful when designing professional dashboards. 
+
+Part K — Create the Final Interactive Dashboard 
+Arrange the visuals approximately like this: 
+ 
+┌──────────────────────────────  ───────────────┐ 
+│ SALES ANALYSIS DASHBOARD                      │ 
+├──────────────┬───────────── ─ ┬───────────────┤ 
+│ Total Sales  │ Total Qty.     │ No. Products  │ 
+├──────────────┴─────────────  ─┴───────────────┤ 
+│ Region Slicer│ Category Slicer│ Date          │ 
+├───────────────────────────────  ──────────────┤ 
+│                                               │ 
+│ Sales by Region / State                       │ 
+│                                               │ 
+├─────────────────────  ──┬─────────────────────┤ 
+│ Sales by Category       │ Sales by Product    │ 
+│                         │                     │ 
+└──────────────────────  ─┴─────────────────────┘ 
+ 
+Step 20: Test the Interactive Dashboard 
+Now perform these tests. 
+Test 1 — Region 
+Select: 
+West 
+Check whether the charts change.
+
+Test 2 — Category 
+Select: 
+Electronics 
+Check whether the dashboard shows Electronics sales. 
+
+Test 3 — Date 
+Select: 
+January–March 2026 
+Check whether the values change. 
+ 
+Test 4 — Hierarchy 
+On the Region chart: 
+Region → State → Product 
+Use the drill-down button. 
+
+Test 5 — Multiple Filters 
+Select: 
+Region = West 
+ 
+Category = Electronics 
+Date = Jan–Mar 2026 
+The dashboard should now display only records satisfying all three selections. 
+----------------------------------------------------------------------------
+Practical No: 07
+Aim- To create KPI Cards and Gauge Visuals in Power BI for monitoring and 
+tracking  business  performance. 
+ 
+1. Open Power BI Desktop 
+1. Open Power BI Desktop. 
+2. Click Home → Get Data. 
+3. Select Excel Workbook. 
+4. Browse to Sales_Performance.xlsx. 
+5. Select the Sales sheet. 
+6. Click Load. 
+Your data will appear in the Data/Fields pane. 
+ 
+2. Check the Data Types 
+Go to Data view. 
+Check that: 
+● Month → Text 
+● Sales → Whole Number 
+● Target → Whole Number 
+● Profit → Whole Number 
+● Orders → Whole Number 
+If required, change the data type from Column tools → Data type. 
+
+3. Create Measures 
+Measures allow us to calculate performance dynamically. 
+Go to: 
+Modeling → New measure 
+Measure 1: Total Sales 
+Total Sales = SUM(Sales[Sales]) 
+Measure 2: Total Target 
+Total Target = SUM(Sales[Target]) 
+Measure 3: Total Profit 
+Total Profit = SUM(Sales[Profit]) 
+Measure 4: Total Orders 
+Total Orders = SUM(Sales[Orders]) 
+Measure 5: Target Achievement % 
+Target Achievement % = 
+DIVIDE([Total Sales], [Total Target], 0) 
+Format Target Achievement % as Percentage.
+
+4. Create the First KPI Card – Total Sales 
+Step 1 
+Go to Report view. 
+
+Step 2 
+Select the Card visual from the Visualizations pane. 
+
+Step 3 
+Drag: 
+Total Sales 
+into the Data/Fields area of the Card. 
+The card will display: 
+Total Sales = ₹13,38,000 
+
+5. Format the Sales Card 
+Select the Card. 
+Go to Format visual. 
+Change: 
+● Title: ON 
+● Title text: Total Sales 
+● Callout value: Increase font size 
+● Category label: ON/OFF as required 
+● Background: ON  
+● Border: ON 
+You can also change the display units to: 
+Thousands (K) or Millions (M)
+for large datasets. 
+ 
+6. Create a Total Profit KPI Card 
+1. Select another Card visual. 
+2. Drag Total Profit into the card. 
+3. Set the title to: 
+Total Profit 
+The card will show: 
+Total Profit = ₹3,61,000 
+Format it appropriately.
+
+7. Create an Orders KPI Card 
+1. Add another Card visual. 
+2. Drag Total Orders into it. 
+3. Set title: 
+Total Orders 
+The card displays: 
+Total Orders = 6,710 
+
+8. Create Target Achievement KPI Card 
+Add another Card. 
+Drag: 
+Target Achievement % 
+into the card. 
+The calculation is: 
+Target Achievement%=Total SalesTotal Target×100Target\ Achievement\% = \frac{Total\ 
+Sales}{Total\ Target}\times100 
+For this dataset: 
+● Total Sales = ₹13,38,000 
+● Total Target = ₹12,60,000 
+Therefore: 
+13,38,00012,60,000×100=106.19%\frac{13,38,000}{12,60,000}\times100 =106.19\% 
+The KPI card will display approximately: 
+106.19% 
+This indicates that total sales are above the target. 
+
+9. Create a Gauge Visual 
+The Gauge visual is useful for showing actual performance against a target. 
+Step 1 
+Click a blank area of the report. 
+
+Step 2 
+Select the Gauge visual. 
+  
+Step 3 
+Drag: 
+Total Sales 
+into Value. 
+
+Step 4 
+Drag: 
+Total Target 
+into Target value. 
+The gauge will now compare: 
+Actual Sales → Target Sales
+
+10. Configure Gauge Maximum Value 
+You can also create a maximum value. 
+Create the following measure: 
+Maximum Sales = [Total Target] * 1.2 
+This sets the maximum gauge value to 120% of the target. 
+Then drag: 
+Maximum Sales 
+into Maximum value. 
+Your gauge now represents: 
+Minimum → Actual Sales → Target → Maximum 
+
+11. Format the Gauge 
+Select the Gauge visual. 
+Go to Format visual. 
+Recommended settings: 
+Gauge axis 
+● Minimum value → 0 
+● Maximum value → Maximum Sales 
+Callout value 
+Turn ON. 
+Target value 
+Turn ON. 
+Title 
+Turn ON. 
+Set title: 
+Sales Performance vs Target
+
+12. Create a Gauge for Profit 
+Create another Gauge. 
+Use: 
+Value 
+→ Total Profit 
+Target value 
+→ Total Target 
+However, because Sales Target and Profit are different measures, a separate Profit Target 
+should ideally be included in the dataset. 
+For example, add a column: 
+Month Profit Profit Target 
+Jan 18000 17000 
+Feb 21000 19000 
+Mar 15000 17000 
+Then create: 
+Total Profit Target = SUM(Sales[Profit Target]) 
+Use: 
+● Value → Total Profit 
+● Target value → Total Profit Target 
+
+13. Create a Monthly Performance Chart 
+To make the dashboard more useful, add a Line and clustered column chart. 
+X-axis 
+Month 
+Column Y-axis 
+Sales 
+Line Y-axis 
+Target 
+This allows students to compare monthly: 
+Actual Sales vs Target Sales 
+
+14. Add a Month Slicer 
+Add a Slicer visual. 
+Drag: 
+Month 
+into the slicer. 
+Students can now select: 
+ 
+● January 
+● February 
+● March 
+● etc. 
+All KPI Cards and Gauge visuals will respond to the selected month. 
+This demonstrates the interactive nature of Power BI dashboards. 
+
+15. Add Conditional Performance Indicator 
+You can create a DAX measure to classify performance. 
+Performance Status = 
+IF( 
+[Target Achievement %] >= 1, 
+"Target Achieved", 
+"Below Target" 
+) 
+You can place this measure in a Card. 
+For the complete dataset, the result will be: 
+Target Achieved
+
+16. Create Performance Variance 
+Create another measure: 
+Sales Variance = 
+[Total Sales] - [Total Target] 
+For the sample data: 
+ 
+₹13,38,000−₹12,60,000=₹78,000₹13,38,000-₹12,60,000 =₹78,000 
+So: 
+Sales Variance = ₹78,000 
+This tells us how much actual sales differ from the target. 
+ 
+17. Create Variance Percentage 
+Sales Variance % = 
+DIVIDE( 
+[Sales Variance], 
+[Total Target], 
+0 
+) 
+For the sample data: 
+78,00012,60,000×100≈6.19%\frac{78,000}{12,60,000}\times100 \approx6.19\% 
+So actual sales are approximately 6.19% above the target. 
+----------------------------------------------------------------------------
+Practical No: 08
+Aim-  To perform time-series analysis in Power BI using DAX measures and 
+Date Hierarchies, and visualize sales trends over time. 
+
+Dataset: 
+Date         Region      Category           Product        Sales 
+01-jan-26    West        Electronics        Laptop         60000 
+15-jan-26    South       Electronics        Mobile         45000 
+05-jan-26    West        Furniture          Chair          12000 
+20-feb-26    North       Furniture          Table          20000 
+10-mar-26    South       Furniture          Chair          15000 
+15-mar-26    North       Electronics        Mobile         30000 
+20-apr-26    West        Electronics        Laptop         55000 
+25-apr-26    West        Electronics        Mobile         25000 
+ 
+Expected total sales ₹262,000 
+ 
+2. Load the Dataset 
+Steps 
+1. Open Power BI Desktop. 
+2. Select Home → Enter data. 
+3. Enter the above data. 
+4. Name the table Sales. 
+5. Click Load. 
+
+3. Check the Date Data Type 
+It is important that Power BI recognizes the Date column as a date. 
+Steps 
+1. Select the Sales table. 
+2. Select the Date column. 
+3. Go to Column tools. 
+4. Check Data type. 
+5. Select Date if it is not already selected. 
+
+4. Create a Date Table 
+For proper time-series analysis, create a separate Date table. 
+Go to: 
+Modeling → New table 
+Enter the following DAX: 
+DateTable = 
+CALENDAR( 
+MIN(Sales[Date]), 
+MAX(Sales[Date]) 
+) 
+Press Enter. 
+
+5. Add Year, Quarter and Month 
+Now create additional columns in the DateTable. 
+Year 
+Go to: 
+DateTable → New column 
+Enter: 
+Year = YEAR(DateTable[Date]) 
+
+6. Create Quarter 
+Select New column and enter: 
+Quarter = “Q” & FORMAT(DateTable[Date], “Q”) 
+Output 
+Date Quarter 
+01-Jan-2026 Q1 
+15-Feb-2026 Q1 
+20-Apr-2026 Q2 
+
+7. Create Month 
+Create another column: 
+Month = FORMAT(DateTable[Date], “MMMM”) 
+Output 
+January 
+February 
+March 
+April 
+
+8. Create Month Number 
+To correctly sort months, create: 
+Month Number = MONTH(DateTable[Date]) 
+Output 
+Month     Month Number 
+January   1 
+February  2 
+March     3 
+April     4 
+
+9. Sort Month Correctly 
+This is an important step. 
+1. Select the Month column. 
+2. Go to Column tools. 
+3. Select Sort by column. 
+4. Select Month Number. 
+
+10. Create a Date Hierarchy 
+Now create the hierarchy. 
+Right-click DateTable[Year] or use the hierarchy options available in the Fields pane. 
+Create a hierarchy named: 
+Date Hierarchy 
+Add: 
+Date Hierarchy 
+│ 
+├── Year 
+├── Quarter 
+├── Month 
+└── Date 
+
+11. Create Total Sales DAX Measure 
+Go to: 
+Modeling → New measure 
+Enter: 
+Total Sales = SUM(Sales[Sales]) 
+Press Enter. 
+ 
+12. Create Monthly Sales Analysis 
+Select a Line Chart. 
+Add: 
+X-axis: 
+DateTable → Month 
+Y-axis: 
+Total Sales 
+Expected Output 
+Month      Sales 
+January    ₹105,000 
+February   ₹32,000 
+March      ₹45,000 
+April      ₹80,000 
+The line chart will show the change in sales over time. 
+Interpretation 
+● January has the highest sales among Q1 months. 
+● Sales decrease in February. 
+● Sales increase again in March. 
+● April shows a strong increase. 
+ 
+13. Analyze Sales by Quarter 
+Replace Month on the X-axis with: 
+Date Hierarchy → Quarter 
+Keep: 
+Total Sales → Y-axis 
+Expected Output 
+Quarter Sales 
+Q1      ₹182,000 
+Q2      ₹80,000 
+The chart shows the difference between Q1 and Q2. 
+
+14. Drill Down from Year to Month 
+Select the line chart. 
+Use the Drill Down button. 
+The hierarchy allows: 
+Year 
+↓ 
+Quarter 
+↓ 
+Month 
+↓ 
+Date 
+
+Output 
+At Year level: 
+2026 
+
+Drill down: 
+Q1 Q2 
+
+Drill down again: 
+January 
+February 
+March 
+April 
+ 
+15. Create Previous Month Sales Using 
+DAX 
+Create a new measure: 
+Previous Month Sales = 
+CALCULATE( 
+[Total Sales], 
+DATEADD(DateTable[Date], -1, MONTH) 
+) 
+This calculates sales for the previous month based on the current date context. 
+Output 
+When the visual is grouped by month, Power BI can compare current-month sales with the 
+previous month’s sales. 
+
+16. Create Sales Growth 
+Create another measure: 
+Sales Growth = 
+[Total Sales] - [Previous Month Sales]
+
+17. Create Sales Growth Percentage 
+Create: 
+Sales Growth % = 
+DIVIDE( 
+[Sales Growth], 
+[Previous Month Sales], 
+0 
+) 
+
+ 
+18. Create a Time-Series Dashboard 
+Add the following visuals. 
+Visual 1 – Card 
+Total Sales 
+₹262,000 
+Visual 2 – Line Chart 
+Month → X-axis 
+Total Sales → Y-axis 
+Visual 3 – Column Chart 
+Quarter → X-axis  
+Total Sales → Y-axis 
+Visual 4 – Table 
+Add: 
+Month 
+Total Sales 
+Previous Month Sales 
+Sales Growth 
+Sales Growth %
+
+19. Add Date Slicer 
+Select Slicer. 
+Add: 
+DateTable[Date] 
+The user can select a date range. 
+For example: 
+01-Jan-2026 ───────── 31-Mar-2026
+
+ 
+20. Final Dashboard Output 
+Your dashboard can be arranged like this: 
+ 
+┌───────────────────────────────────────────────┐ 
+│ TIME-SERIES SALES ANALYSIS                    │ 
+├─────────────────┬─────────────────────────────┤ 
+│ TOTAL SALES     │ DATE SLICER                 │ 
+│ ₹262,000        │ Jan 2026 – Apr 2026         │ 
+├─────────────────┴─────────────────────────────┤ 
+│                                               │ 
+│ MONTHLY SALES TREND                           │ 
+│ Line Chart                                    │ 
+│                                               │ 
+├───────────────────────┬───────────────────────┤  
+│ QUARTERLY SALES       │ SALES GROWTH %        │ 
+│ Column Chart          │ Table/Card            │ 
+├───────────────────────┴───────────────────────┤ 
+│ Month  | Sales  | Previous Month  | Growth %  │ 
+└───────────────────────────────────────────────┘
