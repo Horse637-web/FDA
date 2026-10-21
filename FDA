@@ -1,0 +1,348 @@
+Practical No.1 
+Aim: Install and set up the Python environment for data science using VS Code 
+and required libraries like NumPy, Pandas, Matplotlib, and Scikit-learn.
+ 
+1. Install Python.
+2. Install VS Code.
+3. Install the Python and Jupyter extensions. VS Code -&gt; Extension -&gt;Python / Jupyter
+4. Create a project folder.
+5. Create and activate a virtual environment. 
+6. Upgrade pip. 
+python -m pip install --upgrade pip
+
+ 
+7. Install numpy, pandas, matplotlib, and scikit-learn. 
+Command: pip install numpy pandas matplotlib scikit-learn
+
+8. Verify the installation by importing the libraries.
+9. Select the correct Python interpreter in VS Code.
+10. Run a sample program to confirm the setup.
+------------------------------------------------------------------------------------
+Practical No.2
+Aim- Perform basic Python operations using variables, data types, 
+control structures, functions, and file I/O for reading and writing 
+CSV files.
+
+A. 
+CODE: 
+import csv 
+# Variables and Data Types 
+name = "saniya" 
+age = 20 
+marks = 85 
+# Control Structure (if-else) 
+if marks >= 40: 
+    result = "Pass" 
+else: 
+    result = "Fail" 
+# Function 
+def display(): 
+    print("Name:", name) 
+    print("Age:", age) 
+    print("Marks:", marks) 
+    print("Result:", result) 
+display() 
+# Write data to CSV file 
+with open("student.csv", "w", newline="") as file: 
+    writer = csv.writer(file) 
+    writer.writerow(["Name", "Age", "Marks", "Result"]) 
+    writer.writerow([name, age, marks, result]) 
+# Read data from CSV file 
+print("\nData from CSV File:") 
+with open("student.csv", "r") as file: 
+    reader = csv.reader(file) 
+    for row in reader: 
+        print(row)
+
+B. 
+CODE: 
+import csv 
+# Function to display result 
+def check_result(marks): 
+    if int(marks) >= 40: 
+        return "Pass" 
+    else: 
+        return "Fail" 
+# Read data from CSV file 
+with open("student1.csv", "r") as file: 
+    reader = csv.reader(file) 
+    header = next(reader)  # Skip header 
+    print("Student Details") 
+    print("----------------") 
+    for row in reader: 
+        name = row[0] 
+        age = int(row[1]) 
+        marks = int(row[2]) 
+        result = check_result(marks) 
+        print("Name:", name) 
+        print("Age:", age) 
+        print("Marks:", marks) 
+        print("Result:", result) 
+        print()
+------------------------------------------------------------------------------------
+Practical No.3
+Explore and manipulate data using Pandas — creating Series and 
+DataFrames, performing indexing, slicing, and basic statistical 
+operations.
+
+CODE: 
+import pandas as pd 
+# Create a Series 
+marks = pd.Series([85, 90, 78, 92, 88]) 
+print("Series:") 
+print(marks) 
+# Create a DataFrame 
+data = { 
+    "Name": ["smita", "Reshma", "Akanksha", "Divya", "Saniya"], 
+    "Age": [20, 21, 19, 22, 20], 
+    "Marks": [85, 90, 78, 92, 88] 
+} 
+df = pd.DataFrame(data) 
+print("\nDataFrame:") 
+print(df) 
+# Indexing - Select one column 
+print("\nStudent Names:") 
+print(df["Name"]) 
+# Indexing - Select first row 
+print("\nFirst Row:") 
+print(df.loc[0]) 
+# Slicing - First three rows 
+print("\nFirst Three Rows:") 
+print(df[0:3]) 
+# Basic Statistical Operations 
+print("\nAverage Marks:") 
+print(df["Marks"].mean()) 
+print("\nMaximum Marks:") 
+print(df["Marks"].max()) 
+print("\nMinimum Marks:") 
+print(df["Marks"].min()) 
+print("\nTotal Marks:") 
+print(df["Marks"].sum()) 
+------------------------------------------------------------------------------------
+Practical No.4
+Clean and preprocess data by handling missing values, 
+duplicates, and outliers using appropriate Pandas functions.
+
+CODE: 
+import pandas as pd 
+# Create a DataFrame 
+data = { 
+    "Name": ["Smita", "Akanksha", "Reshma", "Divya"], 
+    "Marks": [85, None, 85, 250] 
+} 
+df = pd.DataFrame(data) 
+print("Original Data") 
+print(df) 
+# 1. Fill Missing Values with Average 
+df["Marks"] = df["Marks"].fillna(df["Marks"].mean()) 
+# 2. Remove Duplicate Rows 
+df = df.drop_duplicates() 
+# 3. Remove Outliers (Marks greater than 100) 
+df = df[df["Marks"] <= 100] 
+print("\nCleaned Data") 
+print(df)
+------------------------------------------------------------------------------------
+Practical No.5
+Analyze time series data using Pandas operations.
+
+CODE: 
+import pandas as pd 
+# Create time series data 
+data = { 
+    'Date': [ 
+        '2025-01-01', '2025-01-02', '2025-01-03', 
+        '2025-01-04', '2025-01-05' 
+    ], 
+    'Sales': [100, 120, 150, 130, 170] 
+} 
+# Create DataFrame 
+df = pd.DataFrame(data) 
+# Convert Date column to datetime 
+df['Date'] = pd.to_datetime(df['Date']) 
+# Set Date as index 
+df.set_index('Date', inplace=True) 
+print("Original Data:") 
+print(df) 
+# Calculate rolling average (3-day) 
+df['Rolling_Avg'] = df['Sales'].rolling(window=3).mean() 
+print("\nData with Rolling Average:") 
+print(df) 
+# Calculate daily change 
+df['Daily_Change'] = df['Sales'].diff() 
+print("\nData with Daily Change:") 
+print(df)
+------------------------------------------------------------------------------------
+Practical No.6
+ Implement a Simple Linear Regression model using Scikit-learn 
+for predicting continuous values and evaluate model 
+performance.
+
+CODE: 
+import numpy as np 
+from sklearn.linear_model import LinearRegression 
+from sklearn.model_selection import train_test_split 
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score 
+# Sample data: Hours Studied vs Marks 
+X = np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(-1, 1) 
+y = np.array([35, 40, 50, 55, 65, 70, 80, 90]) 
+# Split data into training and testing sets 
+X_train, X_test, y_train, y_test = train_test_split( 
+    X, y, test_size=0.25, random_state=42 
+) 
+# Create and train the model 
+model = LinearRegression() 
+model.fit(X_train, y_train) 
+# Predict values 
+y_pred = model.predict(X_test) 
+# Display predictions 
+print("Actual Values:", y_test) 
+print("Predicted Values:", y_pred) 
+# Model parameters 
+print("Slope (Coefficient):", model.coef_[0]) 
+print("Intercept:", model.intercept_) 
+# Evaluate model 
+print("MAE:", mean_absolute_error(y_test, y_pred)) 
+print("MSE:", mean_squared_error(y_test, y_pred)) 
+print("R2 Score:", r2_score(y_test, y_pred))
+------------------------------------------------------------------------------------
+Practical No.7
+Build and test a Logistic Regression model for binary 
+classification and analyze accuracy and confusion matrix.
+
+CODE: 
+# Import required libraries 
+from sklearn.datasets import load_breast_cancer 
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LogisticRegression 
+from sklearn.metrics import accuracy_score, confusion_matrix 
+# Load dataset 
+data = load_breast_cancer() 
+X = data.data 
+y = data.target 
+# Split data into training and testing sets 
+X_train, X_test, y_train, y_test = train_test_split( 
+    X, y, test_size=0.2, random_state=42 
+) 
+# Create Logistic Regression model 
+model = LogisticRegression(max_iter=10000) 
+# Train the model 
+model.fit(X_train, y_train) 
+# Make predictions 
+y_pred = model.predict(X_test) 
+# Calculate accuracy 
+accuracy = accuracy_score(y_test, y_pred) 
+# Calculate confusion matrix 
+cm = confusion_matrix(y_test, y_pred) 
+# Display results 
+print("Accuracy:", accuracy) 
+print("\nConfusion Matrix:") 
+print(cm)
+------------------------------------------------------------------------------------
+Practical No.8
+Apply the K-Nearest Neighbours (kNN) algorithm for 
+classification.
+
+CODE: 
+# K-Nearest Neighbours (kNN) Classification 
+from sklearn.neighbors import KNeighborsClassifier 
+# Training data: [Age, Salary] 
+X = [ 
+    [20, 20000], 
+    [22, 22000], 
+    [25, 25000], 
+    [30, 50000], 
+    [35, 55000], 
+    [40, 60000] 
+] 
+# Classes: 0 = Not Eligible, 1 = Eligible 
+y = [0, 0, 0, 1, 1, 1] 
+# Create kNN model (k = 3) 
+model = KNeighborsClassifier(n_neighbors=3) 
+# Train the model 
+model.fit(X, y) 
+# Test data: [Age, Salary] 
+test = [[28, 45000]] 
+# Predict the class 
+prediction = model.predict(test) 
+print("Predicted class:", prediction[0]) 
+if prediction[0] == 1: 
+    print("Result: Eligible") 
+else: 
+    print("Result: Not Eligible")
+------------------------------------------------------------------------------------
+Practical No.9
+Implement Decision Tree and Random Forest algorithms for 
+supervised learning.
+
+CODE: 
+# Import required libraries 
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.ensemble import RandomForestClassifier 
+from sklearn.metrics import accuracy_score 
+# Load Iris dataset 
+iris = load_iris() 
+X = iris.data 
+y = iris.target 
+# Split data into training and testing 
+X_train, X_test, y_train, y_test = train_test_split( 
+    X, y, test_size=0.2, random_state=42 
+) 
+# -------- Decision Tree -------- 
+dt = DecisionTreeClassifier(random_state=42) 
+dt.fit(X_train, y_train) 
+dt_prediction = dt.predict(X_test) 
+dt_accuracy = accuracy_score(y_test, dt_prediction) 
+# -------- Random Forest -------- 
+rf = RandomForestClassifier( 
+    n_estimators=100, random_state=42 
+) 
+rf.fit(X_train, y_train) 
+rf_prediction = rf.predict(X_test) 
+rf_accuracy = accuracy_score(y_test, rf_prediction) 
+# Display results 
+print("Decision Tree Accuracy:", dt_accuracy) 
+print("Random Forest Accuracy:", rf_accuracy)
+------------------------------------------------------------------------------------
+Practical No.10
+Perform Unsupervised Learning using k-Means Clustering 
+and Principal Component Analysis (PCA) for 
+dimensionality reduction and visualization.
+
+CODE: 
+# k-Means Clustering and PCA 
+from sklearn.datasets import load_iris 
+from sklearn.cluster import KMeans 
+from sklearn.decomposition import PCA 
+import matplotlib.pyplot as plt 
+# Load Iris dataset 
+iris = load_iris() 
+X = iris.data 
+# -------- k-Means Clustering -------- 
+kmeans = KMeans( 
+    n_clusters=3, 
+    random_state=42, 
+    n_init=10 
+) 
+# Train the model and find clusters 
+clusters = kmeans.fit_predict(X) 
+# -------- PCA -------- 
+# Reduce 4 features to 2 features 
+pca = PCA(n_components=2) 
+X_pca = pca.fit_transform(X) 
+# -------- Visualization -------- 
+plt.figure(figsize=(8, 5)) 
+plt.scatter( 
+    X_pca[:, 0], 
+    X_pca[:, 1], 
+    c=clusters, 
+    cmap="viridis", 
+    s=50 
+) 
+plt.xlabel("Principal Component 1") 
+plt.ylabel("Principal Component 2") 
+plt.title("k-Means Clustering using PCA") 
+plt.colorbar(label="Cluster") 
+plt.grid(True, alpha=0.3) 
+plt.show()
