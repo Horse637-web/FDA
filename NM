@@ -110,6 +110,7 @@ print("True value of e^2 =", true_value)
 print("Approximate value =", approx_value) 
 print("Truncation error =", truncation_error) 
 -------------------------------------------------------------------------------------------------------------------------------
+
 Practical No: 02 
 Aim:  To implement and compare basic numerical methods for solving nonlinear equations 
  
@@ -345,6 +346,7 @@ while True:
 print("Newton-Raphson Root =", x_new) 
 print("Iterations =", iterations)
 -------------------------------------------------------------------------------------------------------------------------
+
 Practical No: 03 
 Aim: Gaussian Elimination and Gauss–Jordan Method:To solve a system of linear 
 equations using direct methods. 
@@ -452,6 +454,7 @@ print("x =", a[0][3])
 print("y =", a[1][3]) 
 print("z =", a[2][3]) 
 ------------------------------------------------------------------------------------------------------------------
+
 Practical No: 04 
 Aim:  To decompose a matrix using LU Decomposition and solve a system of linear 
 equations efficiently using Python.  
@@ -529,6 +532,7 @@ print("x =", X[0])
 print("y =", X[1]) 
 print("z =", X[2])
 ---------------------------------------------------------------------------------------------------------------------
+
 Practical No: 05
 Aim: Iterative Methods (Jacobi and Gauss–Seidel):To solve linear equations using 
 iterative techniques. 
@@ -647,6 +651,7 @@ print("x =", x)
 print("y =", y) 
 print("z =", z)
 -------------------------------------------------------------------------------------------------------------
+
 Practical No: 06
 Aim: To compute eigenvalues and eigenvectors of a matrix. 
 Q1. Find the Eigen values and Eigen vectors for the following vectors. 
@@ -726,6 +731,7 @@ print("For λ1 = 1 : [1, 0, 0]")
 print("For λ2 = 3 : [1, 1, 0]") 
 print("For λ3 = 5 : [1, 2, 2]") 
 ----------------------------------------------------------------------------------------------------------------
+
 Practical No: 07
 Aim: To estimate unknown values using interpolation techniques using Python.  
  
@@ -830,6 +836,7 @@ for i in range(1, n):
     result = result + term * diff[i][-1]  
 print("Estimated value of f(4.5) =", result)
 -----------------------------------------------------------------------------------------------------------------------
+
 Practical No: 08 
 Aim: To fit curves to data using least squares and regression techniques. 
  
@@ -930,6 +937,7 @@ b = math.exp(log_b)
 print("Exponential curve:") 
 print("y =", round(a, 4), "*", round(b, 4), "^x") 
 ------------------------------------------------------------------------------------------------------------------
+
 Practical No: 09 
 Aim: To compute derivatives and definite integrals numerically using Python and compare 
 the numerical results with exact analytical results.  
@@ -1125,6 +1133,7 @@ exact = 2
 print("Numerical Integral =", integral) 
 print("Exact Integral =", exact) 
 -----------------------------------------------------------------------------------------------------------------------------
+
 Practical No: 10 
 Aim: Numerical Solution of Differential Equations: To solve differential equations 
 numerically using python. 
