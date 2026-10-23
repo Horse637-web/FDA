@@ -109,7 +109,7 @@ truncation_error = abs(true_value - approx_value)
 print("True value of e^2 =", true_value) 
 print("Approximate value =", approx_value) 
 print("Truncation error =", truncation_error) 
---------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 Practical No: 02 
 Aim:  To implement and compare basic numerical methods for solving nonlinear equations 
  
@@ -344,7 +344,7 @@ while True:
     x = x_new 
 print("Newton-Raphson Root =", x_new) 
 print("Iterations =", iterations)
---------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
 Practical No: 03 
 Aim: Gaussian Elimination and Gauss–Jordan Method:To solve a system of linear 
 equations using direct methods. 
@@ -451,7 +451,7 @@ for i in range(n):
 print("x =", a[0][3]) 
 print("y =", a[1][3]) 
 print("z =", a[2][3]) 
---------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 Practical No: 04 
 Aim:  To decompose a matrix using LU Decomposition and solve a system of linear 
 equations efficiently using Python.  
@@ -528,7 +528,7 @@ print("\nSolution:")
 print("x =", X[0]) 
 print("y =", X[1]) 
 print("z =", X[2])
---------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------
 Practical No: 05
 Aim: Iterative Methods (Jacobi and Gauss–Seidel):To solve linear equations using 
 iterative techniques. 
@@ -646,7 +646,7 @@ print("\nFinal Solution:")
 print("x =", x) 
 print("y =", y) 
 print("z =", z)
---------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------
 Practical No: 06
 Aim: To compute eigenvalues and eigenvectors of a matrix. 
 Q1. Find the Eigen values and Eigen vectors for the following vectors. 
@@ -725,7 +725,7 @@ print("\nEigenvectors:")
 print("For λ1 = 1 : [1, 0, 0]") 
 print("For λ2 = 3 : [1, 1, 0]") 
 print("For λ3 = 5 : [1, 2, 2]") 
---------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 Practical No: 07
 Aim: To estimate unknown values using interpolation techniques using Python.  
  
@@ -829,7 +829,7 @@ for i in range(1, n):
     term = term * (u + (i - 1)) / i 
     result = result + term * diff[i][-1]  
 print("Estimated value of f(4.5) =", result)
---------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Practical No: 08 
 Aim: To fit curves to data using least squares and regression techniques. 
  
@@ -929,7 +929,7 @@ a = math.exp(log_a)
 b = math.exp(log_b)  
 print("Exponential curve:") 
 print("y =", round(a, 4), "*", round(b, 4), "^x") 
---------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 Practical No: 09 
 Aim: To compute derivatives and definite integrals numerically using Python and compare 
 the numerical results with exact analytical results.  
@@ -937,9 +937,10 @@ the numerical results with exact analytical results.
 Q1.  Find the numerical derivative of 
 f(x)= x²
 at x=2, using h=0.01, by: 
-• Forward Difference
+
+• Forward Difference:
 Formula : f'(x)≈ f(x+h)-f(x)
-                 ------------
+                 ____________
                       h
 Here, 
        f(2) = 2³ = 8
@@ -947,12 +948,305 @@ Here,
 
 Therefore,
            f'(2)≈ 8.120601 - 8
-                  --------------
+                  ______________
                        0.01
             ________________
            |f'(2)≈ 12.0601 |
            |_______________|
 
---------------------------------------------------------------------------
+• Backward Difference:
+          f'(x)≈ f(x)-f(x-h)
+                 ____________
+                      h
+          f(1.99)= (1.99)³ = 7.880599
+          f'(2)≈  8- 7.880599
+                  _____________
+                       0.01
+            ________________
+           |f'(2)≈ 11.9401 |
+           |_______________|
+
+• Central Difference: 
+           f'(x)≈ f(x+h)-f(x-h)
+                 ________________
+                      2h
+           f'(2)≈  8.120601 - 7.880599
+                  _____________________
+                          0.02
+            ________________
+           |f'(2)≈ 12.0001 |
+           |_______________|
+Code: 
+Numerical derivative of f(x) = x^3 
+def f(x): 
+    return x**3 
+x = 2 
+h = 0.01 
+# Forward Difference 
+forward = (f(x + h) - f(x)) / h  
+# Backward Difference 
+backward = (f(x) - f(x - h)) / h 
+# Central Difference 
+central = (f(x + h) - f(x - h)) / (2 * h) 
+# Exact derivative 
+exact = 3 * x**2 
+print("Forward Difference =", forward) 
+print("Backward Difference =", backward) 
+print("Central Difference =", central) 
+print("Exact Derivative =", exact)
+
+
+Q2. For f(x) = sin⁡x calculate the numerical derivative at x = π/4 
+Using Central Difference with h= 0.01:
+          f'(x)≈ f(x+h)-f(x-h)
+                 ______________
+                      2h
+Code: 
+Numerical derivative of sin(x) 
+import math 
+def f(x): 
+    return math.sin(x) 
+x = math.pi / 4 
+h = 0.01 
+# Forward Difference 
+forward = (f(x + h) - f(x)) / h 
+# Backward Difference 
+backward = (f(x) - f(x - h)) / h 
+# Central Difference 
+central = (f(x + h) - f(x - h)) / (2 * h) 
+# Exact derivative 
+exact = math.cos(x) 
+print("Forward Difference =", forward) 
+print("Backward Difference =", backward) 
+print("Central Difference =", central) 
+print("Exact Derivative =", exact)
+
+
+Q3. Evaluate numerically: 
+∫₀² x³dx
+using the trapezoidal rule. 
+n = 4 intervals.
+
+     b-a       2-0
+h = ______ = _______ = 0.5
+      n         4
+
+x      𝒇(𝒙)=𝒙𝟑 
+0      0 
+0.5    0.125 
+1      1 
+1.5    3.375 
+2      8 
+
+Trapezoidal formula:  
+                   h
+            I = ________[f(X₀) + f(Xn) + 2{f(x₂) + f(x₃)}]
+                   2
+                   0.5
+            I = ________[0 + 8 + 2(0.125 + 1 + 3.375)]
+                    2
+            I = 0.25[8 + 9]
+            _____________
+           |  I = 4.25   |
+           |_____________|
+Exact Analytical Result
+               ∫₀² x³dx = [x⁴ / 4]₀²
+                            16
+                        = ______ = 4
+                            4
+So:
+• Numerical result = 4.25
+• Exact result = 4
+
+Code: 
+Trapezoidal Rule 
+import numpy as np 
+def f(x): 
+    return x**3 
+a = 0 
+b = 2 
+n = 4 
+h = (b - a) / n  
+x = np.linspace(a, b, n + 1) 
+y = f(x) 
+integral = (h / 2) * ( 
+    y[0] + y[-1] + 2 * np.sum(y[1:-1]) 
+) 
+exact = 4 
+print("Numerical Integral =", integral) 
+print("Exact Integral =", exact)
+
+
+Q4. Evaluate:
+          ∫₀^π sin x dx
+using Simpson's 1/3 rule.
+We take n = 4 intervals
+               π - 0         π
+       h = _____________ = _____
+                 4           4
+The x-values are:
+
+              0, π/4, π/2, 3π/4, π 
+    x          sinx
+    0          0
+    π/4        0.7071
+    π/2        1
+    3π/4       0.7071
+    π          0
+Simpson's 1/3 formula:
+                   h
+             I = _____[f(X₀) + f(X₄) + 4(f(x₁) + f(x₃)) + 2f(x₂)]
+                   3
+Substituting: 
+                  π/4
+           I = _________[0 + 0 + 4(0.7071 + 0.7071) + 2(1) ]
+                   3
+           I ≈ 2.00456
+          _______________
+          | I ≈ 2.00456 |
+          |_____________|
+Code: 
+import numpy as np 
+import math 
+def f(x):      
+return np.sin(x) 
+a = 0 
+b = math.pi 
+n = 4 
+h = (b - a) / n 
+x = np.linspace(a, b, n + 1) 
+y = f(x)  
+integral = (h / 3) * ( 
+    y[0] + y[-1] 
+    + 4 * np.sum(y[1:-1:2]) 
+    + 2 * np.sum(y[2:-1:2]) 
+) 
+exact = 2 
+print("Numerical Integral =", integral) 
+print("Exact Integral =", exact) 
+-----------------------------------------------------------------------------------------------------------------------------
 Practical No: 10 
-Aim:
+Aim: Numerical Solution of Differential Equations: To solve differential equations 
+numerically using python. 
+ 
+Q1.  Solve the differential equation using Euler's method. 
+ dy/dx = x + y
+with initial condition: y(0) = 1
+Initial condition:
+          y(0) = 1
+Using h = 0.1, we calculate the solution up to x= 0.5.
+
+Euler's Formula 
+         yₙ₊₁ = yₙ + hf(xₙ , yₙ)
+where 
+         f(x,y) = x + y
+
+x      y          f(x, y) = x + y     New y
+0.0    1.00000    1.00000             1.10000
+0.1    1.10000    1.20000             1.22000
+0.2    1.22000    1.42000             1.36200
+0.3    1.36200    1.66200             1.52820
+0.4    1.52820    1.92820             1.72102
+
+Therefore,
+      y(0.5) ≈ 1.72102 
+
+Code:
+def f(x, y): 
+    return x + y 
+x = 0 
+y = 1 
+h = 0.1 
+x_end = 0.5 
+print("x\t y") 
+while x <= x_end: 
+    print(round(x, 1), "\t", round(y, 5)) 
+    y = y + h * f(x, y) 
+    x = x + h 
+
+
+Q2.   Solve the differential equation using Modified Euler's method. 
+    dy/dx = x + y,     y(0) = 1
+Find y(0.5) using h= 0.1
+Modified Euler Formula
+
+First calculate the predictor: 
+      y⁽ᵖ⁾ₙ₊₁ = yₙ + hf(xₙ , yₙ)
+
+then correct it:
+      yₙ₊₁ = yₙ + h/2[f(xₙ , yₙ) + f(xₙ₊₁ , y⁽ᵖ⁾ₙ₊₁)]
+
+Code:
+def f(x, y): 
+    return x + y 
+x = 0 
+y = 1 
+h = 0.1 
+x_end = 0.5 
+print("x\t y") 
+while x < x_end: 
+    predictor = y + h * f(x, y) 
+    corrector = y + (h / 2) * ( 
+        f(x, y) + f(x + h, predictor) 
+    ) 
+    x = x + h 
+    y = corrector 
+    print(round(x, 1), "\t", round(y, 6)) 
+
+
+
+Q3. Solve the differential equation using Runge-Kutta 4th Order Method (RK4)
+ dy/dx = x + y,     y(0) = 1
+Find y(0.5) using RK4 with h=0.1
+
+RK4 Formula:
+         k₁ = hf(xₙ , yₙ)
+         k₂ = hf(xₙ + h/2, yₙ + k₁/2)
+         k₃ = hf(xₙ + h/2, yₙ + k₂/2)
+         k₄ = hf(xₙ + h, yₙ + k₃)
+Then:
+         yₙ₊₁ = yₙ + 1/6(k₁ + 2k₂ + 2k₃ + k₄)
+
+Code: 
+def f(x, y): 
+    return x + y 
+x = 0 
+y = 1 
+h = 0.1 
+x_end = 0.5 
+print("x\t y") 
+while x < x_end: 
+    k1 = h * f(x, y) 
+    k2 = h * f(x + h/2, y + k1/2) 
+    k3 = h * f(x + h/2, y + k2/2) 
+    k4 = h * f(x + h, y + k3) 
+    y = y + (k1 + 2*k2 + 2*k3 + k4) / 6 
+    x = x +  
+    print(round(x, 1), "\t", round(y, 6)) 
+
+
+Q4. Solve the differential equation using second-order Runge-Kutta Method (RK2) 
+dy/dx = x² + y, y(0) = 1
+Find y(0.4) using the second-order Runge-Kutta method with h=0.1
+Formula
+    k₁ = hf(xₙ , yₙ)
+    k₂ = hf(xₙ + h/2, yₙ + k₁/2)
+Then:
+          yₙ₊₁ = yₙ + k₂
+Code: 
+def f(x, y): 
+    return x**2 + y 
+x = 0 
+y = 1 
+h = 0.1 
+x_end = 0.4 
+print("x\t y") 
+while x < x_end: 
+    k1 = h * f(x, y) 
+    k2 = h * f( 
+        x + h/2, 
+        y + k1/2 
+    ) 
+    y = y + k2 
+    x = x + h 
+    print(round(x, 1), "\t", round(y, 6))
